@@ -6,4 +6,6 @@ export type MainStackParamList = {
   MyButik: {
     userId: string;
   };
+  Beauty: undefined;
+  Womens: undefined;
 };

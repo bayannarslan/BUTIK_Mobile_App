@@ -8,13 +8,13 @@ import { CompositeScreenProps } from '@react-navigation/native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
 export type MyProfileProps = CompositeScreenProps<
-  BottomTabScreenProps<MainTabsParamList, 'Home'>,
+  BottomTabScreenProps<MainTabsParamList, 'Likes'>,
   NativeStackScreenProps<MainStackParamList>
 >;
 
 // type Props = NativeStackScreenProps<MainTabsParamList, 'Home'>;
 
-const Home: React.FC<MyProfileProps> = ({ navigation }) => {
+const Likes: React.FC<MyProfileProps> = ({ navigation }) => {
   const auth = useContext(AuthContext);
   const userId = auth.session?.user!.id;
   const [users, setUsers] = useState<any>([]);
@@ -88,4 +88,4 @@ const Home: React.FC<MyProfileProps> = ({ navigation }) => {
   );
 };
 
-export default Home;
+export default Likes;
