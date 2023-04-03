@@ -5,6 +5,8 @@ import type { NativeStackNavigationOptions } from '@react-navigation/native-stac
 import MainTabs from './MainTabs';
 
 import { MainStackParamList } from './types';
+import Beauty from '../screens/Beauty';
+import Womens from '../screens/Womens';
 
 const MainStack = createNativeStackNavigator<MainStackParamList>();
 
@@ -22,6 +24,14 @@ const Main = () => {
           headerShown: false
         }}
       />
+      <MainStack.Screen
+        name="Beauty"
+        component={Beauty}
+        />
+        <MainStack.Screen
+        name="Womens"
+        component={Womens}
+        />
     </MainStack.Navigator>
   );
 };
