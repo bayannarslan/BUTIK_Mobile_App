@@ -55,7 +55,7 @@ const QRcode: React.FC<MyProfileProps> = ({ navigation }) => {
         justifyContent: 'center'
       }}
     >
-      <Text>This is the Home tab</Text>
+      <Text>This is the QRcode tab</Text>
       {productList .map((product: any) => {
         return (
           <Pressable

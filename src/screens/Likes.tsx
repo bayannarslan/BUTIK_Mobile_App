@@ -55,7 +55,7 @@ const Likes: React.FC<MyProfileProps> = ({ navigation }) => {
         justifyContent: 'center'
       }}
     >
-      <Text>This is the Home tab</Text>
+      <Text>This is the Likes tab</Text>
       {productList .map((product: any) => {
         return (
           <Pressable
