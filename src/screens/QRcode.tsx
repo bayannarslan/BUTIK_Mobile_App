@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { MainStackParamList, MainTabsParamList } from '../navigation/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -6,6 +6,7 @@ import { supabase } from '../supabase';
 import { AuthContext } from '../provider/AuthProvider';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { Camera } from 'expo-camera'
 
 export type MyProfileProps = CompositeScreenProps<
   BottomTabScreenProps<MainTabsParamList, 'QRcode'>,
@@ -46,6 +47,21 @@ const QRcode: React.FC<MyProfileProps> = ({ navigation }) => {
     }
   ]
 
+  let cameraRef = useRef();
+  const [hasCameraPermissions, setHasCameraPermission] = useState<null | boolean>();
+
+  useEffect(()=> {
+    (async () => {
+      const cameraPermission = await Camera.requestCameraPermissionsAsync();
+      setHasCameraPermission(cameraPermission.status  === "granted");
+    })();
+  }, []);
+
+  if (hasCameraPermissions === null){
+    return <Text>Requesting permissions...</Text>
+  } else if (!hasCameraPermissions){
+    
+  }
 
   return (
     <View
