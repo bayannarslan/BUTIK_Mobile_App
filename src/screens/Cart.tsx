@@ -35,16 +35,16 @@
 //     fetcher();
 //   }, []);
 
-//   const productList = [
-//     {
-//       name: "Purse",
-//       price: "100"
-//     },
-//     {
-//       name: "Shoes",
-//       price: "299"
-//     }
-//   ]
+  //const productList = [
+  //  {
+  //    name: "Purse",
+  //    price: "100"
+  //  },
+  //  {
+  //    name: "Shoes",
+  //    price: "299"
+  //  }
+  //]
 
 
 //   return (

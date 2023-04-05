@@ -38,11 +38,23 @@ const Likes: React.FC<MyProfileProps> = ({ navigation }) => {
   const productList = [
     {
       name: "Purse",
-      price: "100"
+      price: "$100.00"
     },
     {
       name: "Shoes",
-      price: "299"
+      price: "$299.99"
+    },
+    {
+      name: "Jeans",
+      price: "$450.00"
+    },
+    {
+      name: "Jacket",
+      price: "$500.00"
+    },
+    {
+      name: "Dress",
+      price: "$700.00"
     }
   ]
 
@@ -55,7 +67,7 @@ const Likes: React.FC<MyProfileProps> = ({ navigation }) => {
         justifyContent: 'center'
       }}
     >
-      <Text>This is the Likes tab</Text>
+      <Text>Liked Products</Text>
       {productList .map((product: any) => {
         return (
           <Pressable

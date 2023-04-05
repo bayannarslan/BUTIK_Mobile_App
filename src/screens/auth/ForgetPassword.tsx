@@ -27,7 +27,7 @@ export default function ({ navigation }: Props) {
   return (
     <KeyboardAvoidingView behavior="height" enabled style={{ flex: 1 }}>
       <View>
-        <Text>forgot pass</Text>
+        <Text>Forgot Password? </Text>
       </View>
     </KeyboardAvoidingView>
   );
