@@ -16,15 +16,15 @@ export const RegisterButton: React.FC<Props> = (props) => {
     <Pressable 
       onPress={handleRegisterNavigation}
       style={{
-        backgroundColor: 'green'
+        backgroundColor: 'light gray'
       }}  
     >
       <Text
         style={{
-          color: 'white'
+          color: 'black'
         }}
       >
-        Register
+        Don't have an account? Register
       </Text>
     </Pressable>
   );
