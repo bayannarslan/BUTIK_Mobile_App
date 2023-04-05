@@ -15,7 +15,7 @@ export function SubmitButton() {
     <Pressable
       onPress={handleLogin}
       style={{
-        backgroundColor: 'pink ',
+        backgroundColor: 'pink',
       }}
     >
       <Text
