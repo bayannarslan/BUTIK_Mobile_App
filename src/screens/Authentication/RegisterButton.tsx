@@ -16,7 +16,7 @@ export const RegisterButton: React.FC<Props> = (props) => {
     <Pressable 
       onPress={handleRegisterNavigation}
       style={{
-        backgroundColor: 'light gray'
+        backgroundColor: 'light gray '
       }}  
     >
       <Text
