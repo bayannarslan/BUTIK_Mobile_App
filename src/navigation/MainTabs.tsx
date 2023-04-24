@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../provider/AuthProvider';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image } from 'react-native'; // Import Image from react-native
 import type { MainTabsParamList } from './types';
-
+import Auth from './AuthStack';
 import Home from '../screens/Home';
 import Cart from '../screens/Cart';
 import QRcode from '../screens/QRcode';
@@ -12,6 +13,8 @@ import MyButik from '../screens/MyButik';
 const Tabs = createBottomTabNavigator<MainTabsParamList>();
 
 const MainTabs = () => {
+  const auth = useContext(AuthContext);
+  const user = auth.user;
   return (
     <Tabs.Navigator
       screenOptions={{
@@ -69,7 +72,7 @@ const MainTabs = () => {
       />
       <Tabs.Screen
         name="MyButik"
-        component={MyButik}
+        component={user ? MyButik : Auth}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Image

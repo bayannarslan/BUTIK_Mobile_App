@@ -15,15 +15,23 @@ export function SubmitButton() {
     <Pressable
       onPress={handleLogin}
       style={{
-        backgroundColor: 'pink',
+        backgroundColor: '#E2A5AE',
+        padding: 20,
+        margin: 10,
+        width: 375,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10
       }}
     >
       <Text
         style={{
-          color: 'white'
+          color: 'white',
+          fontWeight: 'bold',
+          fontSize: 24,
         }}
       >
-        Login In
+        LOG IN
       </Text>
     </Pressable>
   );

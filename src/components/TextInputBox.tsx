@@ -12,6 +12,9 @@ interface Props {
   placeholder: string;
   secureTextEntry?: boolean;
   onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
+  containerStyle?: any;
+  inputStyle?: any;
+  style?: any;
 }
 
 const TextInputBox: React.FC<Props> = (props) => {
@@ -24,17 +27,20 @@ const TextInputBox: React.FC<Props> = (props) => {
       secureTextEntry={props.secureTextEntry || false}
       autoCorrect={false}
       autoCapitalize="none"
+      containerStyle={props.containerStyle}
+      inputStyle={props.inputStyle}
+      style={props.style}
     />
   );
 };
 
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10
-  }
-});
+// const styles = StyleSheet.create({
+//   input: {
+//     height: 40,
+//     margin: 12,
+//     borderWidth: 1,
+//     padding: 10
+//   }
+// });
 
 export default TextInputBox;

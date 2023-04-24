@@ -85,7 +85,7 @@ const Home: React.FC<MyProfileProps> = (props) => {
       width: '90%',
       height: 40,
       color: '#c8c7c7',
-      backgroundColor: '#ececec',
+      backgroundColor: '#ffffff',
       borderColor:'#ececec',
       borderWidth: 1,
       borderRadius: 5,

@@ -10,19 +10,17 @@ export default function ({ navigation }: Props) {
   const [email, setEmail] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
 
-  async function forget() {
+  async function forget(email: any) {
     setLoading(true);
-    const { data, error } = await supabase.auth.api.resetPasswordForEmail(
-      email
-    );
-    if (!error) {
-      setLoading(false);
-      alert('Check your email to reset your password!');
-    }
-    if (error) {
-      setLoading(false);
+    try {
+      const [data] = await Promise.all([
+        supabase.auth.api.resetPasswordForEmail(email),
+        alert('Check your email to reset your password!')
+      ]);
+    } catch (error: any) {
       alert(error.message);
     }
+    setLoading(false);
   }
   return (
     <KeyboardAvoidingView behavior="height" enabled style={{ flex: 1 }}>

@@ -15,6 +15,20 @@ export function EmailTextInput() {
       value={input.email}
       setValue={input.setEmail}
       onBlur={validate}
+      inputStyle={{
+        fontSize: input.email ? 16 : 20, // adjust font size based on whether input has a value or not
+        color: input.email ? '#000' : '#BCBCBC', // adjust text color based on whether input has a value or not
+        zIndex: 1, // ensure input is above the container border
+        borderBottomWidth: 0
+      }}
+      containerStyle={{
+        width: 374,
+        height: 65,
+        backgroundColor: '#FFFFFF',
+        borderColor: '#BCBCBC',
+        borderRadius: 10,
+        borderBottomWidth: 0
+      }}
     />
   );
 }

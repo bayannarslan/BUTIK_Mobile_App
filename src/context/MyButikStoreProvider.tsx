@@ -2,18 +2,19 @@ import { createContext, useState } from 'react';
 
 import type { ContextProps } from './ContextProps';
 
-export const MyButikStoreContext = createContext<ContextProps | null>(null);
+export const MyButikStoreContext = createContext<ContextProps | any>(null);
 
 interface Props {
   children: React.ReactNode;
 }
 
-export const MyButikStoreProvider: React.FC<Props> = (props) => {
+const MyButikStoreProvider: React.FC<Props> = (props) => {
   const [profile, setProfile] = useState<any>({});
   const [product, setProduct] = useState<ContextProps['product']>('');
   const [price, setPrice] = useState<ContextProps['price']>(0);
   const [quantity, setQuantity] = useState<ContextProps['quantity']>(0);
   const [amount, setAmount] = useState<ContextProps['amount']>(0);
+  const [cart, setCart] = useState<ContextProps['cart']>([]);
 
   return (
     <MyButikStoreContext.Provider 
@@ -27,10 +28,14 @@ export const MyButikStoreProvider: React.FC<Props> = (props) => {
         quantity,
         setQuantity,
         amount,
-        setAmount
+        setAmount,
+        cart,
+        setCart,
       }}
     >
       {props.children}
     </MyButikStoreContext.Provider>
   )
 };
+
+export default MyButikStoreProvider

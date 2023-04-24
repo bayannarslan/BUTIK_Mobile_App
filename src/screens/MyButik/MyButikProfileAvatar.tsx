@@ -1,9 +1,10 @@
 import { useContext } from 'react';
 import { Image } from 'react-native';
-import { MyProfileStoreContext } from './MyProfileStoreProvider';
+import { MyButikStoreContext }  from '../../context/MyButikStoreProvider';
+import { ContextProps } from '../../context/ContextProps';
 
 export function MyProfileAvatar() {
-  const storeProvider = useContext(MyProfileStoreContext);
+  const storeProvider: any | ContextProps = useContext(MyButikStoreContext);
 
   return (
     <Image

@@ -11,4 +11,6 @@ export interface ContextProps {
   setQuantity: React.Dispatch<React.SetStateAction<any>>;
   amount: Number;
   setAmount: React.Dispatch<React.SetStateAction<any>>;
+  cart: any;
+  setCart: React.Dispatch<React.SetStateAction<any>>;
 }

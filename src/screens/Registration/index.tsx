@@ -10,6 +10,7 @@ import { EmailTextInput } from './EmailTextInput';
 import { PasswordTextInput } from './PasswordTextInput';
 import { ConfirmPasswordTextInput } from './ConfirmPasswordTextInput';
 import { SubmitButton } from './SubmitButton';
+import { View } from 'react-native';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Register'>;
 
@@ -17,10 +18,21 @@ export default function (props: Props) {
   return (
     <RegistrationInputProvider>
       <RegistrationProvider>
+      <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: '#fff',
+            padding: 20,
+            paddingTop: 100,
+            paddingBottom: 1000,
+          }}
+        >
         <EmailTextInput />
         <PasswordTextInput />
         <ConfirmPasswordTextInput />
         <SubmitButton />
+      </View>
       </RegistrationProvider>
     </RegistrationInputProvider>
   );

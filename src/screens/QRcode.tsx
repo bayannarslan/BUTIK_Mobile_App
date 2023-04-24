@@ -1,95 +1,84 @@
-import React, { useContext, useEffect, useState, useRef } from 'react';
-import { View, Text, Pressable } from 'react-native';
-import { MainStackParamList, MainTabsParamList } from '../navigation/types';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { supabase } from '../supabase';
-import { AuthContext } from '../provider/AuthProvider';
-import { CompositeScreenProps } from '@react-navigation/native';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { Camera } from 'expo-camera'
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  Dimensions,
+  Pressable
+} from 'react-native';
+import { BarCodeScanner, BarCodeScannerResult } from 'expo-barcode-scanner';
+import BarcodeMask from 'react-native-barcode-mask';
 
-export type MyProfileProps = CompositeScreenProps<
-  BottomTabScreenProps<MainTabsParamList, 'QRcode'>,
-  NativeStackScreenProps<MainStackParamList>
->;
 
-// type Props = NativeStackScreenProps<MainTabsParamList, 'Home'>;
+const QRcode: React.FC = () => {
+  const [permissionResponse, requestPermission] = BarCodeScanner.usePermissions();
+  const [scanned, setScanned] = useState(false);
+  const [data, setData] = useState<string | null>(null);
 
-const QRcode: React.FC<MyProfileProps> = ({ navigation }) => {
-  const auth = useContext(AuthContext);
-  const userId = auth.session?.user!.id;
-  const [users, setUsers] = useState<any>([]);
-  // get all the users
-  useEffect(() => {
-    // console.log(auth.session?.access_token);
-    const fetcher = async () => {
-      // await supabase.auth.signOut();
-      const user = await supabase
-        .from('profile')
-        .select('*')
-        .filter('user_id', 'not.eq', userId);
-      if (!user.data) {
-        throw new Error('what?!');
-      }
-      setUsers(user.data);
-    };
-    fetcher();
-  }, []);
-
-  const productList = [
-    {
-      name: "Purse",
-      price: "100"
-    },
-    {
-      name: "Shoes",
-      price: "299"
+  const handleBarCodeScanned = (scanningResult: BarCodeScannerResult) => {
+    if (!scanned) {
+      const { data } = scanningResult;
+      setScanned(true);
+      setData(data);
     }
-  ]
+  };
 
-  let cameraRef = useRef();
-  const [hasCameraPermissions, setHasCameraPermission] = useState<null | boolean>();
+  if (!permissionResponse) {
+    return <View />;
+  }
 
-  useEffect(()=> {
-    (async () => {
-      const cameraPermission = await Camera.requestCameraPermissionsAsync();
-      setHasCameraPermission(cameraPermission.status  === "granted");
-    })();
-  }, []);
-
-  if (hasCameraPermissions === null){
-    return <Text>Requesting permissions...</Text>
-  } else if (!hasCameraPermissions){
-    
+  if (!permissionResponse.granted) {
+    return (
+      <View style={styles.container}>
+        <Text style={{ textAlign: 'center' }}>
+          We need your permission to show the camera
+        </Text>
+        <Button onPress={requestPermission} title="Grant permission" />
+      </View>
+    );
   }
 
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      <Text>This is the QRcode tab</Text>
-      {productList .map((product: any) => {
-        return (
-          <Pressable
-            key={product.name}
-            style={{
-              padding: 25,
-              margin: 10,
-              backgroundColor: '#ebebeb',
-              width: '75%'
+    <View style={{ flex: 1 }}>
+      <BarCodeScanner
+        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+        style={[StyleSheet.absoluteFillObject, styles.container]}
+      >
+        <BarcodeMask edgeColor="#62B1F6" showAnimatedLine />
+      </BarCodeScanner>
+      {data ? (
+        <View style={styles.overlay}>
+          <Text style={{ textAlign: 'center', color: '#EBEBEB', fontSize: 24 }}>
+            {data}
+          </Text>
+          <Button
+            onPress={() => {
+              setScanned(false);
+              setData(null);
             }}
-          >
-            <Text>{product.name}</Text>
-            <Text>{product.price}</Text>
-          </Pressable>
-        );
-      })}
+            title="Scan Again"
+          />
+        </View>
+      ) : null}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  overlay: {
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+  },
+});
 
 export default QRcode;

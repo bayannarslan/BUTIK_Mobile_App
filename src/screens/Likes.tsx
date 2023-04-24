@@ -75,7 +75,7 @@ const Likes: React.FC<MyProfileProps> = ({ navigation }) => {
             style={{
               padding: 25,
               margin: 10,
-              backgroundColor: '#ebebeb',
+              backgroundColor: '#ffffff',
               width: '75%'
             }}
           >
