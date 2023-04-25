@@ -4,10 +4,10 @@
     "slug": "butik",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/images/RJ.png",
+    "icon": "./src/images/RJicon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./src/images/rjLoad.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
