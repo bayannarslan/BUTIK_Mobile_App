@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
 import { MainStackParamList, MainTabsParamList } from '../navigation/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { supabase } from '../supabase';
@@ -7,6 +7,11 @@ import { AuthContext } from '../provider/AuthProvider';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import plaidDress from '../images/plaidmididress.png';
+import lipstick from "../images/sheermattelipstick.png";
+import hemDress from "../images/hemminidress.png";
+import liner from "../images/liquideyeliner.png";
+import concealer from "../images/stretchconcealer.png";
+import likedheart from "../images/liked_heart.png"
 import {Image} from 'react-native';
 
 export type MyProfileProps = CompositeScreenProps<
@@ -39,30 +44,49 @@ const Likes: React.FC<MyProfileProps> = ({ navigation }) => {
 
   const productList = [
     {
-      name: "Purse",
-      price: "$100.00"
+      name: "Eye Liner",
+      price: "$100.00",
+      img: liner
     },
     {
-      name: "Shoes",
-      price: "$299.99"
+      name: "Concealer",
+      price: "$299.99",
+      img: concealer
     },
     {
-      name: "Jeans",
-      price: "$450.00"
+      name: "Lip Stick",
+      price: "$450.00",
+      img: lipstick
     },
     {
-      name: "Jacket",
-      price: "$500.00"
+      name: "Hemmin Dress",
+      price: "$500.00",
+      img: hemDress
     },
     {
-      name: "Dress",
+      name: "Plaid Dress",
       price: "$700.00" ,
-      img: '../images/plaidmididress.png'
+      img: plaidDress
     }
   ]
 
+  const styles = StyleSheet.create({
+    container: {
+      display: 'flex',
+      marginLeft: '100%',
+      marginTop: '50%'
+    },
+  });
+
 
   return (
+
+    <ScrollView
+    contentContainerStyle={{
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#fff'
+    }}> 
     <View
       style={{
         flex: 1,
@@ -82,18 +106,16 @@ const Likes: React.FC<MyProfileProps> = ({ navigation }) => {
               width: '75%'
             }}
           >
-            <Image
-        //style={styles.tinyLogo}
-        source={{
-          uri: '../images/plaidmididress.png',
-        }}
-      />
+          
+            <Image source={product.img} />
+            <Image source={likedheart}/>
             <Text>{product.name}</Text>
             <Text>{product.price}</Text>
           </Pressable>
         );
       })}
     </View>
+    </ScrollView>
   );
 };
 
