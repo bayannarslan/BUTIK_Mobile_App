@@ -9,10 +9,11 @@ export function MyProfileName() {
     <Text
       style={{
         fontSize: 25,
-        marginTop: 15
+        marginTop: 15,
+        
       }}
     >
-      {storeProvider?.profile.name ? storeProvider?.profile?.name : 'Butik User'}
+      {storeProvider?.profile.name ? storeProvider?.profile?.name : 'Your Profile' }
     </Text>
   );
 }
