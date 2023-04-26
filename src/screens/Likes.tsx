@@ -6,6 +6,8 @@ import { supabase } from '../supabase';
 import { AuthContext } from '../provider/AuthProvider';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import plaidDress from '../images/plaidmididress.png';
+import {Image} from 'react-native';
 
 export type MyProfileProps = CompositeScreenProps<
   BottomTabScreenProps<MainTabsParamList, 'Likes'>,
@@ -54,7 +56,8 @@ const Likes: React.FC<MyProfileProps> = ({ navigation }) => {
     },
     {
       name: "Dress",
-      price: "$700.00"
+      price: "$700.00" ,
+      img: '../images/plaidmididress.png'
     }
   ]
 
@@ -79,6 +82,12 @@ const Likes: React.FC<MyProfileProps> = ({ navigation }) => {
               width: '75%'
             }}
           >
+            <Image
+        //style={styles.tinyLogo}
+        source={{
+          uri: '../images/plaidmididress.png',
+        }}
+      />
             <Text>{product.name}</Text>
             <Text>{product.price}</Text>
           </Pressable>
